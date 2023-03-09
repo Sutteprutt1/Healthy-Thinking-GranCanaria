@@ -1,10 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
   const Suscription = sequelize.define("suscription", {
     start_time: {
-      type: Sequelize.STRING
+      type: Sequelize.DATE,
+      allowNull: false,
     },
     end_time: {
-      type: Sequelize.STRING
+      type: Sequelize.DATE,
+      allowNull: false,
     }
   });
 

@@ -1,39 +1,38 @@
 const db = require("../models/index.js");
-const Activity = db.activity;
+const User = db.user;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Activity
+// Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name || !req.body.location || !req.body.paid || !req.body.description || !req.body.filename) {
+  if (!req.body.username || !req.body.email || !req.body.password) {
     res.status(400).send({
       message: "Content cannot be empty!"
     });
   }
 
-  // Create a Activity
-  const activity = {
-    name: req.body.name,
+  // Create a User
+  const User = {
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
     location: req.body.location,
-    description: req.body.description,
-    paid: req.body.paid,
-    time: req.body.time,
     filename: req.file ? req.file.filename : ""
   }
 
-  // Save Activity in the database
-  Activity.create(activity).then(data => {
+  // Save User in the database
+  User.create(User).then(data => {
     res.send(data);
   }).catch(err => {
     res.status(500).send({
-      message: err.message || "Some error occurred while creating the activity"
+      message: err.message || "Some error occurred while creating the User"
     })
   });
 };
 
-// Retrieve all Activitys from the database.
+// Retrieve all Users from the database.
 exports.findAll = (req, res) => {
-  Activity.findAll().then(data => {
+  User.findAll().then(data => {
     res.send(data);
   }).catch(err => {
     res.status(500).send({
@@ -42,24 +41,24 @@ exports.findAll = (req, res) => {
   })
 };
 
-// Find a single Activity with an id
+// Find a single User with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
   console.log(id)
 
-  Activity.findByPk(id)
+  User.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Activity with id=${id}.`
+          message: `Cannot find User with id=${id}.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Activity with id=" + id
+        message: "Error retrieving User with id=" + id
       });
     });
 };
@@ -68,39 +67,38 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   // Validate request
-  if (!req.body.name || !req.body.location || !req.body.paid || !req.body.description || !req.body.filename) {
+  if (!req.body.username || !req.body.email || !req.body.password) {
     res.status(400).send({
       message: "Content cannot be empty!"
     });
   }
 
-  // Create a Activity
-  const activity = {
-    name: req.body.name,
+  // Create a User
+  const User = {
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
     location: req.body.location,
-    description: req.body.description,
-    paid: req.body.paid,
-    time: req.body.time,
     filename: req.file ? req.file.filename : ""
   }
 
-  Activity.update(activity, {
+  User.update(User, {
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Activity was updated successfully."
+          message: "User was updated successfully."
         });
       } else {
         res.send({
-          message: `Cannot update Activity with id=${id}. Maybe Activity was not found!`
+          message: `Cannot update User with id=${id}. Maybe User was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Activity with id=" + id
+        message: "Error updating User with id=" + id
       });
     });
 };
@@ -109,23 +107,23 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Activity.destroy({
+  User.destroy({
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Activity was deleted successfully!"
+          message: "User was deleted successfully!"
         });
       } else {
         res.send({
-          message: `Cannot delete Activity with id=${id}. Maybe Activity was not found!`
+          message: `Cannot delete User with id=${id}. Maybe User was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Activity with id=" + id
+        message: "Could not delete User with id=" + id
       });
     });
 };

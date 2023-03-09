@@ -23,6 +23,7 @@ db.user = require("./user.model.js")(sequelize, Sequelize);
 db.activity = require("./activity.model.js")(sequelize, Sequelize);
 db.suscription = require("./suscription.model.js")(sequelize, Sequelize);
 db.filter = require("./filter.model.js")(sequelize, Sequelize);
+db.category = require("./category.model.js")(sequelize, Sequelize);
 
 // One User is in many Suscription but one Suscription only has 1 User.
 db.user.hasMany(db.suscription);
@@ -36,8 +37,12 @@ db.suscription.belongsTo(db.activity);
 db.activity.hasMany(db.suscription);
 db.suscription.belongsTo(db.activity);
 
-// Many Activity is in many Filter.
-db.activity.belongsToMany(db.filter, { through: 'categories' });
-db.filter.belongsToMany(db.activity, { through: 'categories' });
+// One Activity is in many categories but one categories only has 1 Activity.
+db.activity.hasMany(db.category);
+db.category.belongsTo(db.activity);
+
+// One Activity is in many categories but one categories only has 1 Activity.
+db.filter.hasMany(db.category);
+db.category.belongsTo(db.filter);
 
 module.exports = db;
