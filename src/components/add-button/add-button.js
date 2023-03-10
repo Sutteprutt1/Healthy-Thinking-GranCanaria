@@ -2,14 +2,6 @@
 // The button will have a different label depending on whether it is being used to add or remove an item.
 import { Button } from "./styles.js";
 
-export function AddButton(props) {
-  return (
-    <Button
-      onClick={() => {
-        props.onClick();
-      }}
-    >
-      +
-    </Button>
-  );
+export function AddButton() {
+  return <Button>+</Button>;
 }
