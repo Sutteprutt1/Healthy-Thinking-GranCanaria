@@ -1,17 +1,26 @@
-import React from "react";
-import "./card.scss";
+import { React, useState, useCallback } from "react";
+import { CardDiv, Title } from "./styles";
+import { AddButton } from "../add-button/add-button";
+import { Popup } from "../pop-up/pop-up";
 
 // Card component that will display Activity name, Activity image, and add/remove button
 export function Card(props) {
+  // Initial state of popup is false
+  const [popup, setPopup] = useState(false);
+
+  const togglePopup = useCallback(() => {
+    setPopup(!popup);
+  }, [popup]);
+
+  // If popup is true, then render the Popup component
+  if (popup) {
+    return <Popup />;
+  }
+
   return (
-    <div className="card">
-      <img src={props.img} alt="Avatar" />
-      <div className="container">
-        <h4>
-          <b>{props.name}</b>
-        </h4>
-        <p>{props.email}</p>
-      </div>
-    </div>
+    <CardDiv onClick={togglePopup}>
+      <Title>Arrucas Botanical Park</Title>
+      <AddButton />
+    </CardDiv>
   );
 }
