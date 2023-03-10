@@ -1,4 +1,4 @@
-import { Card } from "../components/card/card";
+import { Card } from "../components/activity-card/card/card";
 
 export function Home() {
   return (

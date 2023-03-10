@@ -1,7 +1,5 @@
+import { UserProfile } from "../components/profile/profile";
+
 export function Profile() {
-  return (
-    <div className="profile">
-      <h1>Profile</h1>
-    </div>
-  );
+  return <UserProfile />;
 }
