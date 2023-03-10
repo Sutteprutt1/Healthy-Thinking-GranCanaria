@@ -4,7 +4,7 @@ import { AddButton } from "../add-button/add-button";
 import { Popup } from "../pop-up/pop-up";
 
 // Card component that will display Activity name, Activity image, and add/remove button
-export function Card(props) {
+export function Card() {
   // Initial state of popup is false
   const [popup, setPopup] = useState(false);
 
@@ -14,7 +14,7 @@ export function Card(props) {
 
   // If popup is true, then render the Popup component
   if (popup) {
-    return <Popup />;
+    return <Popup togglePopup={togglePopup} />;
   }
 
   return (

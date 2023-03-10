@@ -5,9 +5,16 @@ import PopupButton from "./popup-button";
 // Like Card it will display Activity name, Activity image, and add/remove button.
 //As well as description, location, and duration of the activity.
 
-export function Popup() {
+export function Popup(props) {
+  const { togglePopup } = props;
+
+  function handleClose() {
+    togglePopup();
+  }
+
   return (
     <CardDiv>
+      <button onClick={handleClose}>X</button>
       <Title>Arrucas Botanical Park</Title>
       <Description>Hæ this is a placeholder. Just a test! </Description>
       <PopupButton />
