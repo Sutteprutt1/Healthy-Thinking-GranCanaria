@@ -4,7 +4,11 @@ import { AddButton } from "../add-button/add-button";
 import { Popup } from "../pop-up/pop-up";
 
 // Card component that will display Activity name, Activity image, and add/remove button
-export function Card() {
+export function Card(props) {
+
+  // Receive the info of activity from the page
+  const activity = props.activity;
+
   // Initial state of popup is false
   const [popup, setPopup] = useState(false);
 
@@ -19,7 +23,7 @@ export function Card() {
 
   return (
     <CardDiv onClick={togglePopup}>
-      <Title>Arrucas Botanical Park</Title>
+      <Title>{activity.name}</Title>
       <AddButton />
     </CardDiv>
   );

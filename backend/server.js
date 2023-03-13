@@ -4,14 +4,23 @@ require('dotenv').config();
 
 const app = express();
 
+app.use("/public", express.static('public'));
+
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8081",
+  credentials: true,            //access-control-allow-credentials:true
 };
 
 app.use(cors(corsOptions));
 
 const db = require("./models");
 db.sequelize.sync();
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");

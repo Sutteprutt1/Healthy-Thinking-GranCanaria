@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/filters/";
+const API_URL = "http://localhost:8081/api/filters/";
 
 const getAll = () => {
   return axios.get(API_URL);
@@ -11,10 +11,10 @@ const getOne = (id) => {
   return axios.get(API_URL + id);
 };
 
-const create = () => {
+const create = (data) => {
   let dataToSend = new FormData();
   dataToSend.append("name", data.name);
-  return axios.post(API_URL + id,);
+  return axios.post(API_URL);
 };
 
 const updateOne = (id, data) => {
@@ -27,7 +27,7 @@ const deleteOne = (id) => {
   return axios.delete(API_URL + id, { headers: authHeader() });
 };
 
-const UserService = {
+const FilterService = {
   getAll,
   getOne,
   create,
@@ -35,4 +35,4 @@ const UserService = {
   deleteOne,
 };
 
-export default UserService;
+export default FilterService;
