@@ -9,20 +9,21 @@ exports.create = (req, res) => {
     res.status(400).send({
       message: "Content cannot be empty!"
     });
+    return;
   }
 
   // Create a Category
-  const Category = {
+  const category = {
     filterId: req.body.filterId,
     activityId: req.body.activityId,
   }
 
   // Save Category in the database
-  Category.create(Category).then(data => {
+  Category.create(category).then(data => {
     res.send(data);
   }).catch(err => {
     res.status(500).send({
-      message: err.message || "Some error occurred while creating the Category"
+      message: err.message || "Some error occurred while creating the category"
     })
   });
 };
@@ -33,7 +34,7 @@ exports.findAll = (req, res) => {
     res.send(data);
   }).catch(err => {
     res.status(500).send({
-      message: err.message || "Some error occurred while retrieving all Activities"
+      message: err.message || "Some error occurred while retrieving all categories"
     })
   })
 };
@@ -41,7 +42,6 @@ exports.findAll = (req, res) => {
 // Find a single Category with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  console.log(id)
 
   Category.findByPk(id)
     .then(data => {
@@ -49,13 +49,13 @@ exports.findOne = (req, res) => {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Category with id=${id}.`
+          message: `Cannot find category with id=${id}.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Category with id=" + id
+        message: "Error retrieving category with id=" + id
       });
     });
 };
@@ -68,15 +68,16 @@ exports.update = (req, res) => {
     res.status(400).send({
       message: "Content cannot be empty!"
     });
+    return;
   }
 
   // Create a Category
-  const Category = {
+  const category = {
     filterId: req.body.filterId,
     activityId: req.body.activityId,
   }
 
-  Category.update(Category, {
+  Category.update(category, {
     where: { id: id }
   })
     .then(num => {
@@ -86,13 +87,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Category with id=${id}. Maybe Category was not found!`
+          message: `Cannot update category with id=${id}. Maybe category was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Category with id=" + id
+        message: "Error updating category with id=" + id
       });
     });
 };
@@ -111,13 +112,13 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Category with id=${id}. Maybe Category was not found!`
+          message: `Cannot delete category with id=${id}. Maybe category was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Category with id=" + id
+        message: "Could not delete category with id=" + id
       });
     });
 };

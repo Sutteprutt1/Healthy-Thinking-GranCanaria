@@ -1,40 +1,51 @@
 const jwt = require('jsonwebtoken');
-const utils = require('../utils');
 const bcrypt = require('bcryptjs');
 
 const db = require("../models");
 const User = db.user;
 
 exports.signin = (req, res) => {
-  const username = req.body.username;
-  const pwd = req.body.password;
-  
+
+  const basicAuthData = req.headers.authorization.split('Basic ')[1]
+  const decodedData = atob(basicAuthData);
+
+  const email = decodedData.split(':')[0];
+  const pwd = decodedData.split(':')[1];
 
   // return 400 status if username/password is not exist
-  if (!username || !pwd) {
+  if (!email || !pwd) {
     return res.status(400).json({
       error: true,
-      message: "Username or Password required."
+      message: "Email or Password required."
     });
   }
 
   // return 401 status if the credential is not match.
-  User.findOne({ where: { username: username } })
+  User.findOne({ where: { email: email } })
     .then(data => {
-      const result = bcrypt.compareSync(pwd, data.password);
-      if(!result) return  res.status(401).send('Password not valid!');
+      if (!bcrypt.compareSync(pwd, data.password)) {
+        return res.status(401).send('Password not valid!');
+      }
 
-      // generate token
-      const token = utils.generateToken(data);
+      //generate token
+      var token = jwt.sign({ id: data.id }, process.env.JWT_SECRET, {
+        expiresIn: 86400 // 24 hours
+      });
+      
       // get basic user details
-      const userObj = utils.getCleanUser(data);
+      const userObj = data;
+
       // return the token along with user details
       return res.json({ user: userObj, access_token: token });
     })
     .catch(err => {
+      res.status(404).send({
+        message:
+          err.message || "User is not register yet"
+      });
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving user."
       });
     });
 };
@@ -42,7 +53,8 @@ exports.signin = (req, res) => {
 exports.isAuthenticated = (req, res, next) => {
   // check header or url parameters or post parameters for token
   // var token = req.body.token || req.query.token;
-  var token = req.token;
+  var token = req.headers.authorization.split('Bearer ')[1];
+
   if (!token) {
     return res.status(400).json({
       error: true,
@@ -71,7 +83,7 @@ exports.isAuthenticated = (req, res, next) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving User with id=" + id
+          message: "Error retrieving user with id=" + id
         });
       });
   });

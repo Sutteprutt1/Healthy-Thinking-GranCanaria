@@ -4,24 +4,26 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Filter
 exports.create = (req, res) => {
+
   // Validate request
   if (!req.body.name) {
     res.status(400).send({
       message: "Content cannot be empty!"
     });
+    return;
   }
 
   // Create a Filter
-  const Filter = {
+  const filter = {
     name: req.body.name,
   }
 
   // Save Filter in the database
-  Filter.create(Filter).then(data => {
+  Filter.create(filter).then(data => {
     res.send(data);
   }).catch(err => {
     res.status(500).send({
-      message: err.message || "Some error occurred while creating the Filter"
+      message: err.message || "Some error occurred while creating the filter"
     })
   });
 };
@@ -32,7 +34,7 @@ exports.findAll = (req, res) => {
     res.send(data);
   }).catch(err => {
     res.status(500).send({
-      message: err.message || "Some error occurred while retrieving all Activities"
+      message: err.message || "Some error occurred while retrieving all filters"
     })
   })
 };
@@ -48,13 +50,13 @@ exports.findOne = (req, res) => {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Filter with id=${id}.`
+          message: `Cannot find filter with id=${id}.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Filter with id=" + id
+        message: "Error retrieving filter with id=" + id
       });
     });
 };
@@ -67,14 +69,15 @@ exports.update = (req, res) => {
     res.status(400).send({
       message: "Content cannot be empty!"
     });
+    return;
   }
 
   // Create a Filter
-  const Filter = {
+  const filter = {
     name: req.body.name,
   }
 
-  Filter.update(Filter, {
+  Filter.update(filter, {
     where: { id: id }
   })
     .then(num => {
@@ -84,13 +87,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Filter with id=${id}. Maybe Filter was not found!`
+          message: `Cannot update filter with id=${id}. Maybe filter was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Filter with id=" + id
+        message: "Error updating filter with id=" + id
       });
     });
 };
@@ -109,13 +112,13 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Filter with id=${id}. Maybe Filter was not found!`
+          message: `Cannot delete filter with id=${id}. Maybe filter was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Filter with id=" + id
+        message: "Could not delete filter with id=" + id
       });
     });
 };
