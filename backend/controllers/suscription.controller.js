@@ -9,33 +9,34 @@ exports.create = (req, res) => {
     res.status(400).send({
       message: "Content cannot be empty!"
     });
+    return;
   }
 
-  // Create a Suscription
-  const Suscription = {
+  // Create a suscription
+  const suscription = {
     userId: req.body.userId,
     activityId: req.body.activityId,
     start_time: req.body.start_time,
     end_time: req.body.end_time,
   }
 
-  // Save Suscription in the database
-  Suscription.create(Suscription).then(data => {
+  // Save suscription in the database
+  Suscription.create(suscription).then(data => {
     res.send(data);
   }).catch(err => {
     res.status(500).send({
-      message: err.message || "Some error occurred while creating the Suscription"
+      message: err.message || "Some error occurred while creating the suscription"
     })
   });
 };
 
-// Retrieve all Suscriptions from the database.
+// Retrieve all suscriptions from the database.
 exports.findAll = (req, res) => {
   Suscription.findAll().then(data => {
     res.send(data);
   }).catch(err => {
     res.status(500).send({
-      message: err.message || "Some error occurred while retrieving all Activities"
+      message: err.message || "Some error occurred while retrieving all suscriptions"
     })
   })
 };
@@ -57,7 +58,7 @@ exports.findOne = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Suscription with id=" + id
+        message: "Error retrieving suscription with id=" + id
       });
     });
 };
@@ -70,17 +71,18 @@ exports.update = (req, res) => {
     res.status(400).send({
       message: "Content cannot be empty!"
     });
+    return;
   }
 
   // Create a Suscription
-  const Suscription = {
+  const suscription = {
     userId: req.body.userId,
     activityId: req.body.activityId,
     start_time: req.body.start_time,
     end_time: req.body.end_time,
   }
 
-  Suscription.update(Suscription, {
+  Suscription.update(suscription, {
     where: { id: id }
   })
     .then(num => {
@@ -90,13 +92,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Suscription with id=${id}. Maybe Suscription was not found!`
+          message: `Cannot update suscription with id=${id}. Maybe suscription was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Suscription with id=" + id
+        message: "Error updating suscription with id=" + id
       });
     });
 };
@@ -115,13 +117,13 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Suscription with id=${id}. Maybe Suscription was not found!`
+          message: `Cannot delete suscription with id=${id}. Maybe suscription was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Suscription with id=" + id
+        message: "Could not delete suscription with id=" + id
       });
     });
 };
