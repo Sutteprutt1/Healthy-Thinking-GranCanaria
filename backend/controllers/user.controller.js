@@ -118,7 +118,11 @@ exports.update = (req, res) => {
   }
 
   User.findByPk(id).then(data => {
-    filename = (data.filename ? data.filename : null);
+    try{
+      filename = data.filename;
+    } catch {
+      console.log('User has not an image saved');
+    }
 
     // Create a User
     user = {
@@ -153,7 +157,12 @@ exports.update = (req, res) => {
           message: "Error updating user with id=" + id
         });
       });
-  })
+  }).catch(err => {
+    res.send({
+      message:
+        err.message || "Some error occurred while retrieving user."
+    });
+  });
 };
 
 // Find user by username and password
