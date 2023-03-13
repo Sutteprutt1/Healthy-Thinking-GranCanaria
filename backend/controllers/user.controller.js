@@ -125,7 +125,7 @@ exports.update = (req, res) => {
     }
 
     // Create a User
-    user = {
+    const user = {
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
