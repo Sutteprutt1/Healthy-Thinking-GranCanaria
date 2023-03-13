@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "../components/activity-card/card/card";
 import ActivityService from "../services/activity.service.js"
+import { BackgroundGradient } from "../components/globalStyles";
 
 export function Home() {
 
@@ -22,6 +23,7 @@ export function Home() {
 
   return (
     <div className="home">
+      <BackgroundGradient />
       <h1>Home</h1>
       {activity &&
         activity.map((event, index) => (
