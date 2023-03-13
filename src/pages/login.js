@@ -1,5 +1,11 @@
 import { UserLogin } from "../components/login/login";
+import { LoginBackground } from "../components/globalStyles";
 
 export function Login() {
-  return <UserLogin />;
+  return (
+    <>
+      <LoginBackground />
+      <UserLogin />
+    </>
+  );
 }
