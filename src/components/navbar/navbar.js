@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { NavWrapper, NavButton } from "./styles";
 import navbutton from "./navbutton.png";
+import home from "./home-icon.png";
+import profile from "./profile.png";
+
 // Navbar component that will display home, user profile and map
 
 export default function Navbar() {
@@ -16,9 +19,12 @@ export default function Navbar() {
       </NavButton>
       {showMenu && (
         <NavWrapper>
-          <a href="/">Home</a>
-          <a href="/profile">Profile</a>
-          <a href="/map">Map</a>
+          <a href="/">
+            <img src={home} alt="home icon" />
+          </a>
+          <a href="/profile">
+            <img src={profile} alt="profile icon" />
+          </a>
         </NavWrapper>
       )}
     </>
