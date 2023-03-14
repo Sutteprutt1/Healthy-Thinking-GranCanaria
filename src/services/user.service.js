@@ -17,7 +17,9 @@ const updateOne = (id, data) => {
   dataToSend.append("email", data.email);
   dataToSend.append("password", data.password);
   dataToSend.append("location", data.location);
-  data.filename ? dataToSend.append("filename", data.filename) : dataToSend.append("filename", "") ;
+  data.filename
+    ? dataToSend.append("filename", data.filename)
+    : dataToSend.append("filename", "");
   return axios.put(API_URL + id, { headers: authHeader() });
 };
 
