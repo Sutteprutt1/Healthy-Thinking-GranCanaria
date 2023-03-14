@@ -27,8 +27,8 @@ export function Home() {
       <h1>Home</h1>
       {activity &&
         activity.map((event, index) => (
-          <Card key={index} activity={event} />
-        ))};
+          <Card key={index} activity={event} buttonImage="/images/PlusMath.png"/>
+        ))}
     </div>
   );
 }

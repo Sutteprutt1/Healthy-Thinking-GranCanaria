@@ -2,6 +2,6 @@
 // The button will have a different label depending on whether it is being used to add or remove an item.
 import { Button } from "./styles.js";
 
-export function AddButton() {
-  return <Button>+</Button>;
+export function AddButton(props) {
+  return <Button><img src={`${props.buttonImage}`} alt=""/></Button>;
 }
