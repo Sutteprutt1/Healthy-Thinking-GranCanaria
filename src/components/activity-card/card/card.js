@@ -18,11 +18,12 @@ export function Card(props) {
 
   // If popup is true, then render the Popup component
   if (popup) {
-    return <Popup togglePopup={togglePopup} />;
+    return <Popup togglePopup={togglePopup} activity={activity} />;
   }
 
   return (
     <CardDiv onClick={togglePopup}>
+      <img src={'http://localhost:8081/public/images/' + activity.filename}/>
       <Title>{activity.name}</Title>
       <AddButton />
     </CardDiv>
