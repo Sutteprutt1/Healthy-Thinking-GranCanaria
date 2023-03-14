@@ -1,35 +1,76 @@
 import styled from "styled-components";
+import { colors } from "../globalStyles.js";
 
 export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  background-color: ${colors.darkGreen};
+  width: 300px;
+  height: 360px;
+  border-radius: 40px;
+  margin: 0 auto;
+  margin-top: 180px;
+  align-self: center;
 `;
 
-export const Title = styled.h1`
-  font-size: 18px;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
 `;
 
 export const Input = styled.input`
   width: 200px;
-  height: 30px;
+  height: 50px;
   margin: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   box-sizing: border-box;
+  color: ${colors.white};
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid ${colors.white};
+  outline: none;
+  ::placeholder {
+    color: ${colors.white};
+    font-size: 16px;
+  }
 `;
 
 export const SubmitButton = styled.button`
-  background-color: #4caf50;
+  background-color: ${colors.lightGreen};
+  width: 114px;
+  height: 44px;
+  border-radius: 40px;
   border: none;
   color: white;
-  padding: 15px 20px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 28px;
+`;
+
+export const Register = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  p {
+    font-size: 14px;
+  }
+`;
+
+export const RegisterButton = styled.button`
+  background-color: ${colors.lightGreen};
+  width: 114px;
+  height: 44px;
+  border-radius: 40px;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 14px;
   cursor: pointer;
 `;
