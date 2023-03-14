@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Card } from "../components/activity-card/card/card";
 import ActivityService from "../services/activity.service.js"
 import { BackgroundGradient } from "../components/globalStyles";
+import Navbar from "../components/navbar/navbar";
 
 export function Home() {
 
@@ -22,13 +23,18 @@ export function Home() {
   };
 
   return (
-    <div className="home">
+    <>
+      <Navbar />
       <BackgroundGradient />
       <h1>Home</h1>
+      <Card />
+    </>
+
       {activity &&
         activity.map((event, index) => (
           <Card key={index} activity={event} />
         ))};
     </div>
+
   );
 }
