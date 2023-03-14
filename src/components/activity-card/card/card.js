@@ -18,9 +18,12 @@ export function Card() {
   }
 
   return (
+    <>
+    <Title>Arrucas Botanical Park</Title>
     <CardDiv onClick={togglePopup}>
-      <Title>Arrucas Botanical Park</Title>
+      
       <AddButton />
     </CardDiv>
+    </>
   );
 }

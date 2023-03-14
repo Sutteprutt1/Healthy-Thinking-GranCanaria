@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../globalStyles";
 
 export const CardDiv = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -6,6 +7,8 @@ export const CardDiv = styled.div`
   height: 120px;
   margin: auto;
   text-align: center;
+  background-color: ${colors.lightGreen};
+  border-radius: 20px;
 `;
 
 export const Title = styled.h1`
