@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Card } from "../components/activity-card/card/card";
-import ActivityService from "../services/activity.service.js"
+import ActivityService from "../services/activity.service.js";
 import { BackgroundGradient } from "../components/globalStyles";
 import Navbar from "../components/navbar/navbar";
 
 export function Home() {
-
   const [activity, setActivity] = useState([]);
 
   useEffect(() => {
@@ -14,10 +13,10 @@ export function Home() {
 
   const retrieveEvent = () => {
     ActivityService.getAll()
-      .then(response => {
+      .then((response) => {
         setActivity(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -27,14 +26,9 @@ export function Home() {
       <Navbar />
       <BackgroundGradient />
       <h1>Home</h1>
-      <Card />
-    </>
-
       {activity &&
-        activity.map((event, index) => (
-          <Card key={index} activity={event} />
-        ))};
-    </div>
-
+        activity.map((event, index) => <Card key={index} activity={event} />)}
+      ;
+    </>
   );
 }
