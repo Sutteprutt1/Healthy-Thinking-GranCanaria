@@ -4,8 +4,10 @@ import { colors } from "../../globalStyles";
 export const Button = styled.button`
   background-color: ${colors.lightGreen};
   border: none;
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
 `;

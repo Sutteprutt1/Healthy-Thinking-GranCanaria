@@ -27,8 +27,7 @@ export function Home() {
       <BackgroundGradient />
       <h1>Home</h1>
       {activity &&
-        activity.map((event, index) => <Card key={index} activity={event} />)}
-      ;
+        activity.map((event, index) => <Card key={index} activity={event} buttonImage="/images/PlusMath.png"/>)}
     </>
   );
 }
