@@ -6,7 +6,6 @@ export const CardDiv = styled.div`
   width: 320px;
   height: 104px;
   margin: auto;
-  text-align: center;
   background-color: ${colors.lightGreen};
   border-radius: 20px;
   display: flex;
@@ -58,6 +57,7 @@ export const AddButtonDiv = styled.div`
 `;
 
 export const Activity = styled.div`
-margin: auto;
-width: 320px;
+  margin: auto;
+  width: 320px;
+  margin-bottom: 20px;
 `;

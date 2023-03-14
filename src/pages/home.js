@@ -3,6 +3,7 @@ import { Card } from "../components/activity-card/card/card";
 import ActivityService from "../services/activity.service.js";
 import { BackgroundGradient } from "../components/globalStyles";
 import Navbar from "../components/navbar/navbar";
+import { PaidFilter } from "../components/paid-filter/paid-filter";
 
 export function Home() {
   const [activity, setActivity] = useState([]);
@@ -26,8 +27,9 @@ export function Home() {
       <Navbar />
       <BackgroundGradient />
       <h1>Home</h1>
+      <PaidFilter />
       {activity &&
-        activity.map((event, index) => <Card key={index} activity={event} buttonImage="/images/PlusMath.png"/>)}
+        activity.map((event, index) => <Card key={index} activity={event} type="add"/>)}
     </>
   );
 }

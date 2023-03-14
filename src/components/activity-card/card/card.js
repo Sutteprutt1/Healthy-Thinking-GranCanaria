@@ -31,7 +31,7 @@ export function Card(props) {
           </ImageDim>
         </ImageDiv>
         <AddButtonDiv>
-          <AddButton buttonImage={`${props.buttonImage}`}/>
+          <AddButton buttonImage={`/images/${props.type}.png`}/>
         </AddButtonDiv>
       </CardDiv>
     </Activity>

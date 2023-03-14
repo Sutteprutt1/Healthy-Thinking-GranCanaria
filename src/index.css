@@ -12,8 +12,12 @@ code {
 
 h1 {
   font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-weight: 700;
 }
 
 button {
   font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-weight: 700;
 }
