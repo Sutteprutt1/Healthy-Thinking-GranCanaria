@@ -11,17 +11,29 @@ const register = (username, email, password, location) => {
   });
 };
 
-const login = (email, password) => {
+const login = (user) => {
+
   return axios
     .post(API_URL + "signin", {
-      email,
-      password,
+      withCredentials: true,
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }, {
+      auth: {
+        username: user.email,
+        password: user.password
+      }
     })
     .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+      if (response.data.access_token) {
+        localStorage.setItem('token', response.data.access_token)
+        localStorage.setItem('userId', response.data.user.id)
       }
-      return response.data;
+      // return response.data;
+    }).catch(err => {
+      console.log(err);
     });
 };
 
