@@ -27,14 +27,10 @@ export function Home() {
       <Navbar />
       <BackgroundGradient />
       <h1>Home</h1>
-      <Card />
-    </>
-
       {activity &&
         activity.map((event, index) => (
           <Card key={index} activity={event} />
         ))};
-    </div>
-
+    </>
   );
 }
