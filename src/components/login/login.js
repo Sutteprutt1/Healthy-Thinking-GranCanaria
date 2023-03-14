@@ -1,20 +1,26 @@
-import { LoginWrapper, Title, Input, SubmitButton } from "./styles";
-import authService from "../../services/auth.service.js"
+import {
+  LoginWrapper,
+  Input,
+  SubmitButton,
+  Form,
+  Register,
+  RegisterButton,
+} from "./styles";
+import authService from "../../services/auth.service.js";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
 export function UserLogin() {
-
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   const initialUserState = {
     email: "",
-    password: ""
+    password: "",
   };
 
   const [user, setUser] = useState(initialUserState);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
   };
@@ -22,24 +28,44 @@ export function UserLogin() {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    authService.login(user).then((response) => {
-      if (localStorage.getItem("token")) {
-        navigate("/home")
-        console.log(localStorage.getItem("token"));
-      }
-    }).catch(e => {
-      console.log(e);
-    });
-  }
+    authService
+      .login(user)
+      .then((response) => {
+        if (localStorage.getItem("token")) {
+          navigate("/home");
+          console.log(localStorage.getItem("token"));
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
-    <LoginWrapper>
-      <Title>Login</Title>
-      <form onSubmit={onSubmit}>
-        <Input placeholder="email" type="text" name='email' onChange={handleInputChange} required />
-        <Input placeholder="password" type="text" name='password' onChange={handleInputChange} required />
-        <SubmitButton type='submit'>Login</SubmitButton>
-      </form>
-    </LoginWrapper>
+    <>
+      <LoginWrapper>
+        <Form onSubmit={onSubmit}>
+          <Input
+            placeholder="Email"
+            type="text"
+            name="email"
+            onChange={handleInputChange}
+            required
+          />
+          <Input
+            placeholder="Password"
+            type="text"
+            name="password"
+            onChange={handleInputChange}
+            required
+          />
+        </Form>
+        <SubmitButton type="submit">Login</SubmitButton>
+      </LoginWrapper>
+      <Register>
+        <p>Don't have an account yet?</p>
+        <RegisterButton to="/register">Register</RegisterButton>
+      </Register>
+    </>
   );
 }

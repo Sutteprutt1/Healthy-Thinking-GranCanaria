@@ -8,6 +8,7 @@ export const colors = {
   pink: "#FFB7C3",
   yellow: "#F9A620",
   blue: "#81B9CB",
+  black: "#000000"
 };
 
 export const BackgroundGradient = createGlobalStyle`

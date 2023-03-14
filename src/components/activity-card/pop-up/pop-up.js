@@ -1,4 +1,4 @@
-import { CardDiv, Description, Title } from "./styles";
+import { PopUp, CardDiv, Description, Title, Image, ImageDiv, DarkFilter } from "./styles";
 import PopupButton from "./popup-button";
 
 // This is the expanded version of the Card component:
@@ -17,11 +17,17 @@ export function Popup(props) {
   }
 
   return (
-    <CardDiv>
-      <button onClick={handleClose}>X</button>
-      <Title>{activity.name}</Title>
-      <Description>{activity.description}</Description>
-      <PopupButton />
-    </CardDiv>
+    <PopUp>
+      <DarkFilter onClick={handleClose}/>
+      <CardDiv>
+        {/* <button onClick={handleClose}>X</button> */}
+        <Title>{activity.name}</Title>
+        <ImageDiv>
+          <Image src={'http://localhost:8081/public/images/' + activity.filename} />
+        </ImageDiv>
+        <Description>{activity.description}</Description>
+        <PopupButton />
+      </CardDiv>
+    </PopUp>
   );
 }

@@ -1,5 +1,5 @@
 import { React, useState, useCallback } from "react";
-import { CardDiv, Title } from "./styles";
+import { Activity, CardDiv, Title, Image, ImageDiv, ImageDim, AddButtonDiv } from "./styles";
 import { AddButton } from "../add-button/add-button";
 import { Popup } from "../pop-up/pop-up";
 
@@ -22,10 +22,18 @@ export function Card(props) {
   }
 
   return (
-    <CardDiv onClick={togglePopup}>
-      <img src={'http://localhost:8081/public/images/' + activity.filename}/>
+    <Activity>
       <Title>{activity.name}</Title>
-      <AddButton />
-    </CardDiv>
+      <CardDiv onClick={togglePopup}>
+        <ImageDiv>
+          <ImageDim>
+            <Image src={'http://localhost:8081/public/images/' + activity.filename}/>
+          </ImageDim>
+        </ImageDiv>
+        <AddButtonDiv>
+          <AddButton buttonImage={`${props.buttonImage}`}/>
+        </AddButtonDiv>
+      </CardDiv>
+    </Activity>
   );
 }
