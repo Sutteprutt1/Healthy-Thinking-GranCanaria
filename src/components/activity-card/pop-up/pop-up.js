@@ -6,6 +6,10 @@ import PopupButton from "./popup-button";
 //As well as description, location, and duration of the activity.
 
 export function Popup(props) {
+
+  // Receive the info of activity from the page
+  const activity = props.activity;
+
   const { togglePopup } = props;
 
   function handleClose() {
@@ -15,8 +19,8 @@ export function Popup(props) {
   return (
     <CardDiv>
       <button onClick={handleClose}>X</button>
-      <Title>Arrucas Botanical Park</Title>
-      <Description>Hæ this is a placeholder. Just a test! </Description>
+      <Title>{activity.name}</Title>
+      <Description>{activity.description}</Description>
       <PopupButton />
     </CardDiv>
   );
