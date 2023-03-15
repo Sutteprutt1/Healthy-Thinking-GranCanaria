@@ -1,11 +1,11 @@
-import "./App.css";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from "./pages/home";
-import { Profile } from "./pages/profile";
-import { Layout } from "./pages/layout";
-import { NoPage } from "./pages/no-page";
-import { Login } from "./pages/login";
+import "./App.css"
+import ReactDOM from "react-dom/client"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {Home} from "./pages/home"
+import {Profile} from "./pages/profile"
+import {Layout} from "./pages/layout"
+import {NoPage} from "./pages/no-page"
+import {Login} from "./pages/login"
 
 export default function App() {
   return (
@@ -19,8 +19,7 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+const root = ReactDOM.createRoot(document.getElementById("root"))
