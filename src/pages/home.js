@@ -50,7 +50,6 @@ export function Home() {
   const setPaidActivities = () => {
     setFreeActivity(activity.filter(activity => activity.paid === 0));
     setPaymentActivity(activity.filter(activity => activity.paid === 1));
-    console.log(freeActivity);
   };
 
   return (
