@@ -42,7 +42,7 @@ export const EmailContainer = styled.input`
 `
 export const Span = styled.span`
   display: flex;
-  padding: 0 80px;
+  padding: 0 60px;
   margin: 0 20px;
   border-bottom: solid ${colors.lightGreen};
 `
@@ -50,7 +50,7 @@ export const AgendaContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  padding: 15px 90px;
+  padding: 15px 0;
   margin-top: 70px;
 `
 export const Agenda = styled.h3`
