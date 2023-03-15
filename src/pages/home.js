@@ -1,28 +1,29 @@
-import { useEffect, useState } from "react";
-import { Card } from "../components/activity-card/card/card";
-import ActivityService from "../services/activity.service.js";
-import { BackgroundGradient } from "../components/globalStyles";
-import Navbar from "../components/navbar/navbar";
+import {useEffect, useState} from "react"
+import {Card} from "../components/activity-card/card/card"
+import ActivityService from "../services/activity.service.js"
+import {BackgroundGradient} from "../components/globalStyles"
+import Navbar from "../components/navbar/navbar"
 
 export function Home() {
-  const [activity, setActivity] = useState([]);
+  const [activity, setActivity] = useState([])
 
   useEffect(() => {
-    retrieveEvent();
-  }, []);
+    retrieveEvent()
+  }, [])
 
   const retrieveEvent = () => {
     ActivityService.getAll()
-      .then((response) => {
-        setActivity(response.data);
+      .then(response => {
+        setActivity(response.data)
       })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+      .catch(e => {
+        console.log(e)
+      })
+  }
 
   return (
     <>
+      <Navbar></Navbar>
       <Navbar />
       <BackgroundGradient />
       <h1>Home</h1>
@@ -30,5 +31,5 @@ export function Home() {
         activity.map((event, index) => <Card key={index} activity={event} />)}
       ;
     </>
-  );
+  )
 }
