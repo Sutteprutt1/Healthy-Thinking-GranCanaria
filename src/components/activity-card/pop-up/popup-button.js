@@ -7,8 +7,8 @@ export default function PopupButton(props) {
   const activity = props.activity;
 
   var data = {
-    start_time: '',
-    end_time: '',
+    start_time: new Date(),
+    end_time: new Date(),
     userId: localStorage.getItem("userId"),
     activityId: activity.id
   }
@@ -16,7 +16,8 @@ export default function PopupButton(props) {
   function addToAgenda() {
     console.log(data);
     SuscriptionService.create(data).then(data => {
-      console.log('OK');
+      //Do anything then data return.
+      
     }).catch(err => {
       console.log(err);
     })
