@@ -1,28 +1,35 @@
-const express = require("express")
-const cors = require("cors")
-require("dotenv").config()
+
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+
 
 const app = express()
 
 var corsOptions = {
-  origin: "http://localhost:3000",
-}
+  origin: "*",
+};
+
 
 app.use(cors(corsOptions))
 
-app.use("/public", express.static("public"))
+
+app.use("/public", express.static("public"));
+
 
 const db = require("./models")
 
 // db.sequelize.sync();
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000")
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization")
-  res.header("Access-Control-Allow-Credentials", "true")
-  next()
-})
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 
 db.sequelize.sync({force: true}).then(() => {
   console.log("Drop and re-sync db.")
@@ -57,5 +64,7 @@ app.get("/", (req, res) => {
 // set port, listen for requests
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`)
+
+console.log(`Server is running on port ${PORT}.`)
 })
+
