@@ -14,7 +14,7 @@ export const ProfileContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   margin-top: 120px;
-  padding: 0 120px 20px;
+  padding: 0 90px 20px;
   border-radius: 20px;
 `
 
