@@ -1,6 +1,6 @@
 module.exports = {
   HOST: "localhost",
-  USER: process.env.USER,
+  USER: "root",
   PASSWORD: process.env.PASSWORD,
   DB: "healthy_thinking",
   dialect: "mysql",
@@ -8,6 +8,6 @@ module.exports = {
     max: 5,
     min: 0,
     acquire: 30000,
-    idle: 10000
-  }
+    idle: 10000,
+  },
 };
