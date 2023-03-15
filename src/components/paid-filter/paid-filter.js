@@ -1,18 +1,46 @@
-import { Filter, LeftButton, RightButton, FilterImg, FilterLane, Toggle, ToggleCircle } from "./styles"
+import {
+  Filter,
+  SelectedButton,
+  NotSelectedButton,
+  FilterImg,
+  SelectedFilterLane,
+  NotSelectedFilterLane,
+  Toggle,
+  ToggleCircleRight,
+  ToggleCircleLeft
+} from "./styles"
 
-export function PaidFilter(props) {
+// Change the filter between payment and free activities
+export function PaidFilterFree(props) {
   return (
-    <Filter>
-      <LeftButton>
-        <FilterImg src="/images/dollar.png" alt=""/>
-        <FilterLane/>
-      </LeftButton>
+    <Filter onClick={props.onClick}>
+      <SelectedButton>
+        <FilterImg src="/images/dollar.png" alt="" />
+        <SelectedFilterLane />
+      </SelectedButton>
       <Toggle>
-        <ToggleCircle/>
+        <ToggleCircleLeft />
       </Toggle>
-      <RightButton>
-        <FilterImg src="/images/dollar.png" alt=""/>
-      </RightButton>
+      <NotSelectedButton>
+        <FilterImg src="/images/dollar.png" alt="" />
+      </NotSelectedButton>
+    </Filter>
+  )
+}
+
+export function PaidFilterPayment(props) {
+  return (
+    <Filter onClick={props.onClick}>
+      <NotSelectedButton>
+        <FilterImg src="/images/dollar.png" alt="" />
+        <NotSelectedFilterLane />
+      </NotSelectedButton>
+      <Toggle>
+        <ToggleCircleRight />
+      </Toggle>
+      <SelectedButton>
+        <FilterImg src="/images/dollar.png" alt="" />
+      </SelectedButton>
     </Filter>
   )
 }

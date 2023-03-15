@@ -21,3 +21,7 @@ button {
   font-style: italic;
   font-weight: 700;
 }
+
+input {
+  font-family: 'Poppins', sans-serif;
+}

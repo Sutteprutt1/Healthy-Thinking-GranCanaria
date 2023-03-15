@@ -10,8 +10,7 @@ export const Filter = styled.div`
   margin-bottom: 20px;
 `;
 
-export const LeftButton = styled.div`
-  background-color: ${colors.yellow};
+export const Button = styled.div`
   height: 60px;
   width: 60px;
   border-radius: 50%;
@@ -19,12 +18,12 @@ export const LeftButton = styled.div`
   position: relative;
 `;
 
-export const RightButton = styled.div`
+export const SelectedButton = styled(Button)`
+  background-color: ${colors.yellow};
+`;
+
+export const NotSelectedButton = styled(Button)`
   background-color: ${colors.darkGreen};
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  display: flex;
 `;
 
 export const FilterImg = styled.img`
@@ -37,10 +36,17 @@ export const FilterLane = styled.div`
   height: 50px;
   width: 5px;
   position: absolute;
-  background-color: ${colors.yellow};
   transform: rotate(-45deg);
   left: 45%;
   top: 10%;
+`;
+
+export const SelectedFilterLane = styled(FilterLane)`
+  background-color: ${colors.yellow};
+`;
+
+export const NotSelectedFilterLane = styled(FilterLane)`
+  background-color: ${colors.darkGreen};
 `;
 
 export const Toggle = styled.div`
@@ -60,5 +66,13 @@ export const ToggleCircle = styled.div`
   border-radius: 50%;
   position: absolute;
   top: 5px;
+  
+`;
+
+export const ToggleCircleLeft = styled(ToggleCircle)`
   left: 5px;
+`;
+
+export const ToggleCircleRight = styled(ToggleCircle)`
+  right: 5px;
 `;
