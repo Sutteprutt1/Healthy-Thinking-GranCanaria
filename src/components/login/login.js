@@ -59,8 +59,8 @@ export function UserLogin() {
             onChange={handleInputChange}
             required
           />
+          <SubmitButton type="submit">Login</SubmitButton>
         </Form>
-        <SubmitButton type="submit">Login</SubmitButton>
       </LoginWrapper>
       <Register>
         <p>Don't have an account yet?</p>

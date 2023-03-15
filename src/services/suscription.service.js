@@ -1,5 +1,5 @@
 import axios from "axios";
-import authHeader from "./auth-header";
+import authHeader from "./auth.header.js";
 
 const API_URL = "http://localhost:8081/api/suscriptions/";
 
@@ -9,6 +9,10 @@ const getAll = () => {
 
 const getOne = (id) => {
   return axios.get(API_URL + id);
+};
+
+const findActivitiesByUserId = (id) => {
+  return axios.get(API_URL + 'filterByUserId/' + id);
 };
 
 const create = (data) => {
@@ -40,6 +44,7 @@ const deleteOne = (id) => {
 const SuscriptionService = {
   getAll,
   getOne,
+  findActivitiesByUserId,
   create,
   updateOne,
   deleteOne,

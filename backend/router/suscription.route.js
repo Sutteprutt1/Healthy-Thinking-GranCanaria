@@ -12,6 +12,8 @@ module.exports = app => {
   // Retrieve a single User with id
   router.get("/:id", suscriptions.findOne);
 
+  router.get("/filterByUserId/:id", suscriptions.findActivitiesByUserId);
+
   // Update a User with id
   router.put("/:id", suscriptions.update);
 

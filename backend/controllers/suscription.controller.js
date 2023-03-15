@@ -1,6 +1,7 @@
 const db = require("../models/index.js");
 const Suscription = db.suscription;
 const Op = db.Sequelize.Op;
+const Activity = db.activity;
 
 // Create and Save a new Suscription
 exports.create = (req, res) => {
@@ -44,7 +45,6 @@ exports.findAll = (req, res) => {
 // Find a single Suscription with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  console.log(id)
 
   Suscription.findByPk(id)
     .then(data => {
@@ -102,6 +102,34 @@ exports.update = (req, res) => {
       });
     });
 };
+
+// Retrieve all suscriptions from the database order by user id.
+exports.findActivitiesByUserId = (req, res) => {
+  const userId = req.params.id;
+
+  // Getting alL User's suscriptions
+  Suscription.findAll({
+    where: { userId: userId }
+  })
+  .then(subscriptions => {
+    // Getting all info about activities
+    const activityPromises = subscriptions.map(subscription => {
+      return Activity.findByPk(subscription.activityId);
+    });
+    return Promise.all(activityPromises);
+  })
+  .then(activities => {
+    // Return activities
+    res.send(activities);
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).send({
+      message: "Error retrieving activities for userId=" + userId
+    });
+  });
+};
+
 
 // Delete
 exports.delete = (req, res) => {

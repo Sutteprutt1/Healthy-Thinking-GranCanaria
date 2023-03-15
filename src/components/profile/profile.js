@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "../activity-card/card/card";
 import { UserImg, UserName, UserWrapper } from "./styles";
-import ActivityService from "../../services/activity.service.js"
+import SuscriptionService from "../../services/suscription.service.js"
 
 export function UserProfile() {
 
@@ -12,7 +12,7 @@ export function UserProfile() {
   }, []);
 
   const retrieveEvent = () => {
-    ActivityService.getAll()
+    SuscriptionService.findActivitiesByUserId(localStorage.getItem('userId'))
       .then(response => {
         setActivity(response.data);
       })
