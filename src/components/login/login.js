@@ -54,7 +54,7 @@ export function UserLogin() {
           />
           <Input
             placeholder="Password"
-            type="text"
+            type="password"
             name="password"
             onChange={handleInputChange}
             required
