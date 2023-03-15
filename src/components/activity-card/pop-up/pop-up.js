@@ -26,7 +26,7 @@ export function Popup(props) {
           <Image src={'http://localhost:8081/public/images/' + activity.filename} />
         </ImageDiv>
         <Description>{activity.description}</Description>
-        <PopupButton activity = {activity} />
+        <PopupButton activity = {activity} type={props.type}/>
       </CardDiv>
     </PopUp>
   );

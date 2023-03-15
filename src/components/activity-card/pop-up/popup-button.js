@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Button } from "./styles.js";
 import SuscriptionService from "../../../services/suscription.service"
 
 export default function PopupButton(props) {
 
+  const [suscriptions, setSuscriptions] = useState([]);
+  const [currentSuscriptions, setCurrentSuscriptions] = useState([]);
   // Receive the info of activity from the page
   const activity = props.activity;
 
@@ -23,5 +26,32 @@ export default function PopupButton(props) {
     })
   }
 
-  return <Button onClick={addToAgenda} >Add to agenda</Button>;
+  function removeFromAgenda() {
+    setSuscriptions(SuscriptionService.getAll())
+    .then(() => {
+      setCurrentSuscriptions(suscriptions.filter(suscription => suscription.userId === data.userId && suscription.activityId === activity.id))
+      .then(() => {
+        currentSuscriptions.forEach(suscription => 
+          SuscriptionService.deleteOne(suscription.id).then(data => {
+            //Do anything then data return.
+              
+          }).catch(err => {
+            console.log(err);
+          })
+        )
+      })
+    })
+    
+  }
+
+  return (
+    <>
+    {props.type === "add" ? (
+      <Button onClick={addToAgenda}>Add to agenda</Button>
+    ) : null}
+    {props.type === "delete" ? (
+      <Button onClick={removeFromAgenda}>Remove from agenda</Button>
+    ) : null}
+    </>
+  );
 }

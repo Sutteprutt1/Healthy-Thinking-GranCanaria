@@ -11,3 +11,9 @@ export const Button = styled.button`
   justify-content: center;
   padding: 0px;
 `;
+
+export const Image = styled.img`
+  height: 40px;
+  width: 40px;
+`;
+
