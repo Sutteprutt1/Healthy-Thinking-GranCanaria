@@ -36,7 +36,7 @@ exports.signin = (req, res) => {
       const userObj = data;
 
       // return the token along with user details
-      return res.json({ user: userObj, access_token: token });
+      return res.json({ user: userObj, access_token: token }); 
     })
     .catch(err => {
       res.status(404).send({

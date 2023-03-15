@@ -19,7 +19,7 @@ app.use("/public", express.static("public"));
 
 const db = require("./models")
 
-// db.sequelize.sync();
+db.sequelize.sync();
 
 app.use(function (req, res, next) {
 
@@ -31,9 +31,9 @@ app.use(function (req, res, next) {
 });
 
 
-db.sequelize.sync({force: true}).then(() => {
-  console.log("Drop and re-sync db.")
-})
+// db.sequelize.sync({force: true}).then(() => {
+//   console.log("Drop and re-sync db.")
+// })
 
 // parse requests of content-type - application/json
 app.use(express.json())
