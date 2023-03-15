@@ -10,7 +10,7 @@ import {
   Agenda,
   AgendaContainer,
 } from "./styles"
-import ActivityService from "../../services/activity.service.js"
+import SuscriptionService from "../../services/suscription.service"
 import Navbar from "../navbar/navbar"
 import account from "./account.png"
 
