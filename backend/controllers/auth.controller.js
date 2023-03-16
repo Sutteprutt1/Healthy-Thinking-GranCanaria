@@ -8,8 +8,10 @@ exports.signin = (req, res) => {
   const basicAuthData = req.headers.authorization.split("Basic ")[1];
   const decodedData = Buffer.from(basicAuthData, "base64");
 
-  const email = decodedData.split(":")[0] + "";
-  const pwd = decodedData.split(":")[1] + "";
+  console.log(decodedData);
+
+  const email = decodedData.split(":")[0];
+  const pwd = decodedData.split(":")[1];
 
   // return 400 status if username/password is not exist
   if (!email || !pwd) {
