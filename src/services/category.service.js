@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8081/api/categories/";
+const API_URL = "http://" + window.location.hostname + ":8081/api/categories/";
 
 const getAll = () => {
   return axios.get(API_URL);
@@ -12,7 +12,7 @@ const getOne = (id) => {
 };
 
 const create = (data) => {
-  let dataToSend = new FormData();
+  let dataToSend = new URLSearchParams();
   dataToSend.append("activityId", data.activityId);
   dataToSend.append("filterId", data.filterId);
   return axios.post(API_URL, {
@@ -21,7 +21,7 @@ const create = (data) => {
 };
 
 const updateOne = (id, data) => {
-  let dataToSend = new FormData();
+  let dataToSend = new URLSearchParams();
   dataToSend.append("activityId", data.activityId);
   dataToSend.append("filterId", data.filterId);
   return axios.post(API_URL + id, {

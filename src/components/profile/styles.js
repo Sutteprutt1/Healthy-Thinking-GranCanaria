@@ -44,7 +44,7 @@ export const Span = styled.span`
   display: flex;
   padding: 0 60px;
   margin: 0 20px;
-  border-bottom: solid ${colors.lightGreen};
+  border-bottom: 1px solid ${colors.lightGreen};
 `
 export const AgendaContainer = styled.div`
   display: flex;
@@ -55,6 +55,7 @@ export const AgendaContainer = styled.div`
 `
 export const Agenda = styled.h3`
   font-family: sans-serif;
+  font-style: italic;
   color: ${colors.darkGreen};
   padding: 0;
   margin: 0;

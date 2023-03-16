@@ -18,7 +18,7 @@ export function Card(props) {
 
   // If popup is true, then render the Popup component
   if (popup) {
-    return <Popup togglePopup={togglePopup} activity={activity} />;
+    return <Popup togglePopup={togglePopup} activity={activity} type={props.type}/>;
   }
 
   return (
