@@ -1,5 +1,5 @@
 module.exports = {
-  HOST: "localhost",
+  HOST: "containers-us-west-168.railway.app",
   USER: "root",
   PASSWORD: process.env.PASSWORD,
   DB: "healthy_thinking",
