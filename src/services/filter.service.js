@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth.header.js";
 
-const API_URL = "http://localhost:8081/api/filters/";
+const API_URL = "http://" + window.location.hostname + ":8081/api/filters/";
 
 const getAll = () => {
   return axios.get(API_URL);
@@ -12,7 +12,7 @@ const getOne = (id) => {
 };
 
 const create = (data) => {
-  let dataToSend = new FormData();
+  let dataToSend = new URLSearchParams();
   dataToSend.append("name", data.name);
   return axios.post(API_URL, {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8', dataToSend }
@@ -20,7 +20,7 @@ const create = (data) => {
 };
 
 const updateOne = (id, data) => {
-  let dataToSend = new FormData();
+  let dataToSend = new URLSearchParams();
   dataToSend.append("name", data.name);
   return axios.post(API_URL + id, {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8', dataToSend }
