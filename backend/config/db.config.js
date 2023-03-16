@@ -1,6 +1,6 @@
 module.exports = {
   HOST: process.env.HOST,
-  USER: process.env.USER,
+  USER: "root",
   PASSWORD: process.env.PASSWORD,
   DB: process.env.DB,
   dialect: "mysql",
