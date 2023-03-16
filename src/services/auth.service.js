@@ -37,7 +37,8 @@ const login = (user) => {
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("userId");
+  localStorage.removeItem("token");
 };
 
 const getCurrentUser = () => {

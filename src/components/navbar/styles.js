@@ -18,12 +18,12 @@ export const NavWrapper = styled.div`
   img {
     width: 35px;
     height: 35px;
-    padding-top: 68px;
+    margin-top: 68px;
   }
   img:hover {
     color: ${colors.yellow};
   }
-  z-index: 2;
+  z-index: 20;
 `;
 
 export const NavButton = styled.button`
@@ -34,7 +34,7 @@ export const NavButton = styled.button`
   top: 50%;
   transform: translate3d(-50%, -50%, 0);
   left: 0;
-  z-index: 2;
+  z-index: 20;
   width: 50px;
   height: 66px;
   img {
@@ -54,7 +54,30 @@ export const DarkFilter = styled.div`
   bottom: 0;
   background-color: ${colors.black};
   opacity: 0.7;
-  z-index: 1;
+  z-index: 19;
   transition-duration: 500ms;
   transition-property: background-color;
+  display: flex;
+  flex-direction: column;
 `;
+
+export const Title = styled.p`
+  margin-left: 100px;
+  font-size: 24px;
+  margin-top: 68px;
+  margin-bottom: 6px;
+  height: 35px;
+`;
+
+export const NotSelectedTitle = styled(Title)`
+  color: ${colors.lightGreen};
+`;
+
+export const SelectedTitle = styled(Title)`
+  color: ${colors.yellow};
+`;
+
+export const LogOutTitle = styled(Title)`
+  color: ${colors.pink};
+`;
+
