@@ -8,6 +8,7 @@ import {
   PaidFilterFree,
   PaidFilterPayment,
 } from "../components/paid-filter/paid-filter";
+import { LogoCard } from "../components/logo-card/logoCard";
 
 export function Home() {
   const [activity, setActivity] = useState([]);
@@ -61,7 +62,7 @@ export function Home() {
     <>
       <Navbar />
       <BackgroundGradient />
-      <h1>Home</h1>
+      <LogoCard />
       {!paid ? (
         <>
           <PaidFilterFree onClick={() => changePaid()} />

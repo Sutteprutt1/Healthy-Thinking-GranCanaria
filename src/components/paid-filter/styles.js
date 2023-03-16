@@ -8,6 +8,7 @@ export const Filter = styled.div`
   align-items: center;
   right: 50%;
   margin-bottom: 20px;
+  margin-top: 60px;
 `;
 
 export const Button = styled.div`

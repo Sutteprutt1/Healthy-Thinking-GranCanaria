@@ -50,6 +50,9 @@ exports.signin = (req, res) => {
 exports.isAuthenticated = (req, res, next) => {
   // check header or url parameters or post parameters for token
   // var token = req.body.token || req.query.token;
+
+  console.log(req.headers)
+
   var token = req.headers.authorization.split("Bearer ")[1]
 
   if (!token) {

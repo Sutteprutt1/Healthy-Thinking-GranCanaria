@@ -8,10 +8,11 @@ const getAll = () => {
 };
 
 const getOne = (id) => {
-  return axios.get(API_URL + id, { headers: authHeader() });
+  return axios.get(API_URL + id);
 };
 
 const updateOne = (id, data) => {
+
   let dataToSend = new FormData();
   dataToSend.append("username", data.username);
   dataToSend.append("email", data.email);
@@ -20,11 +21,12 @@ const updateOne = (id, data) => {
   data.filename
     ? dataToSend.append("filename", data.filename)
     : dataToSend.append("filename", "");
-  return axios.put(API_URL + id, { headers: authHeader() });
+  return axios.put(API_URL + id, dataToSend,
+    { headers: authHeader() });
 };
 
 const deleteOne = (id) => {
-  return axios.delete(API_URL + id, { headers: authHeader() });
+  return axios.delete(API_URL + id, {}, { headers: authHeader() });
 };
 
 const UserService = {

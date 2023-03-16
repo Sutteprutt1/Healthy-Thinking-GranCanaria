@@ -21,6 +21,6 @@ export const BackgroundGradient = createGlobalStyle`
 
 export const LoginBackground = createGlobalStyle`
   body {
-    background: linear-gradient(to bottom, ${colors.lightGreen}, ${colors.pink});
+    background: linear-gradient(to bottom, ${colors.white}, ${colors.lightGreen}, ${colors.pink});
     height: 100vh;
   }`;

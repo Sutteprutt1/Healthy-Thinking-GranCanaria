@@ -1,9 +1,10 @@
 export default function authHeader() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('userId'));
+  const token = localStorage.getItem('token');
 
-  if (user && user.access_token) {
-    return { Authorization: 'Bearer ' + user.access_token }; // for Spring Boot back-end
-    // return { 'x-access-token': user.access_token };       // for Node.js Express back-end
+  if (user && token) {
+    return { 'Authorization': 'Bearer ' + token }; // for Spring Boot back-end
+    // return { 'x-access-token': token };       // for Node.js Express back-end
   } else {
     return {};
   }

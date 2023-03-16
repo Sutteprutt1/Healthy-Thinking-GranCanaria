@@ -9,6 +9,7 @@ import {
 import authService from "../../services/auth.service.js";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { LogoCard } from "../logo-card/logoCard";
 
 export function UserLogin() {
   let navigate = useNavigate();
@@ -43,6 +44,7 @@ export function UserLogin() {
 
   return (
     <>
+      <LogoCard/>
       <LoginWrapper>
         <Form onSubmit={onSubmit}>
           <Input
