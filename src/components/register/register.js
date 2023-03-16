@@ -1,6 +1,7 @@
 import authService from "../../services/auth.service.js";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import {
   RegisterWrapper,
   RegisterSection,
@@ -9,8 +10,6 @@ import {
   RegisterButton,
   ReturnButton,
 } from "./styles.js";
-
-import { LogoCard } from "../logo-card/logoCard.js";
 
 export function UserRegistration() {
   let navigate = useNavigate();
@@ -36,10 +35,7 @@ export function UserRegistration() {
     authService
       .register(user)
       .then((response) => {
-        if (localStorage.getItem("token")) {
-          navigate("/home");
-          console.log(localStorage.getItem("token"));
-        }
+        navigate("/");
       })
       .catch((e) => {
         console.log(e);
@@ -79,8 +75,9 @@ export function UserRegistration() {
               onChange={handleInputChange}
               required
             />
-
+            {/* <Link to="/"> */}
             <RegisterButton type="submit">Register</RegisterButton>
+            {/* </Link> */}
           </Form>
         </RegisterWrapper>
         <ReturnButton onClick={() => navigate("/")}>Return</ReturnButton>
