@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://healthy-thinking.onrender.com//api/users/";
+const API_URL = "https://healthy-thinking.onrender.com/api/users/";
 
 const register = (user) => {
   return axios.post(API_URL + "signup", user);

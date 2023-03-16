@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "https://healthy-thinking.onrender.com//api/categories/";
+const API_URL = "https://healthy-thinking.onrender.com/api/categories/";
 
 const getAll = () => {
   return axios.get(API_URL);
