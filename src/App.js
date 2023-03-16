@@ -5,6 +5,7 @@ import { Profile } from "./pages/profile";
 import { Layout } from "./pages/layout";
 import { NoPage } from "./pages/no-page";
 import { Login } from "./pages/login";
+import { Register } from "./pages/register";
 
 export default function App() {
   return (
@@ -12,11 +13,12 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="home" element={<Home />} />
           <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
