@@ -1,4 +1,13 @@
-import { PopUp, CardDiv, Description, Title, Image, ImageDiv, DarkFilter } from "./styles";
+import {
+  PopUp,
+  CardDiv,
+  Description,
+  Title,
+  Image,
+  ImageDiv,
+  DarkFilter,
+  ExitButton,
+} from "./styles";
 import PopupButton from "./popup-button";
 
 // This is the expanded version of the Card component:
@@ -6,7 +15,6 @@ import PopupButton from "./popup-button";
 //As well as description, location, and duration of the activity.
 
 export function Popup(props) {
-
   // Receive the info of activity from the page
   const activity = props.activity;
 
@@ -18,15 +26,17 @@ export function Popup(props) {
 
   return (
     <PopUp>
-      <DarkFilter onClick={handleClose}/>
+      <DarkFilter onClick={handleClose} />
       <CardDiv>
-        {/* <button onClick={handleClose}>X</button> */}
+        <ExitButton onClick={handleClose}>X</ExitButton>
         <Title>{activity.name}</Title>
         <ImageDiv>
-          <Image src={'http://localhost:8081/public/images/' + activity.filename} />
+          <Image
+            src={"http://localhost:8081/public/images/" + activity.filename}
+          />
         </ImageDiv>
         <Description>{activity.description}</Description>
-        <PopupButton activity = {activity} />
+        <PopupButton activity={activity} togglePopup={togglePopup} />
       </CardDiv>
     </PopUp>
   );
