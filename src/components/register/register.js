@@ -1,23 +1,25 @@
-import {
-  LoginWrapper,
-  Input,
-  SubmitButton,
-  Form,
-  Register,
-  RegisterButton,
-} from "./styles";
 import authService from "../../services/auth.service.js";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { LogoCard } from "../logo-card/logoCard";
-import { Link } from "react-router-dom";
+import {
+  RegisterWrapper,
+  RegisterSection,
+  Form,
+  Input,
+  RegisterButton,
+  ReturnButton,
+} from "./styles.js";
 
-export function UserLogin() {
+import { LogoCard } from "../logo-card/logoCard.js";
+
+export function UserRegistration() {
   let navigate = useNavigate();
 
   const initialUserState = {
+    username: "",
     email: "",
     password: "",
+    location: "",
   };
 
   const [user, setUser] = useState(initialUserState);
@@ -30,8 +32,9 @@ export function UserLogin() {
   const onSubmit = (event) => {
     event.preventDefault();
 
+    // create new user
     authService
-      .login(user)
+      .register(user)
       .then((response) => {
         if (localStorage.getItem("token")) {
           navigate("/home");
@@ -45,13 +48,12 @@ export function UserLogin() {
 
   return (
     <>
-      <LogoCard />
-      <LoginWrapper>
-        <Form onSubmit={onSubmit}>
+      <RegisterSection>
+        <RegisterWrapper>
           <Input
-            placeholder="Email"
+            placeholder="Username"
             type="text"
-            name="email"
+            name="username"
             onChange={handleInputChange}
             required
           />
@@ -62,15 +64,27 @@ export function UserLogin() {
             onChange={handleInputChange}
             required
           />
-          <SubmitButton type="submit">Login</SubmitButton>
-        </Form>
-      </LoginWrapper>
-      <Register>
-        <p>Don't have an account yet?</p>
-        <Link to="/register">
-          <RegisterButton>Register</RegisterButton>
-        </Link>
-      </Register>
+          <Form onSubmit={onSubmit}>
+            <Input
+              placeholder="Email"
+              type="text"
+              name="email"
+              onChange={handleInputChange}
+              required
+            />
+            <Input
+              placeholder="Location"
+              type="text"
+              name="location"
+              onChange={handleInputChange}
+              required
+            />
+
+            <RegisterButton type="submit">Register</RegisterButton>
+          </Form>
+        </RegisterWrapper>
+        <ReturnButton onClick={() => navigate("/")}>Return</ReturnButton>
+      </RegisterSection>
     </>
   );
 }

@@ -2,43 +2,43 @@ import axios from "axios";
 
 const API_URL = "http://" + window.location.hostname + ":8081/api/users/";
 
-const register = (username, email, password, location) => {
-  return axios.post(API_URL + "signup", {
-    username,
-    email,
-    password,
-    location
-  });
+const register = (user) => {
+  return axios.post(API_URL + "signup", user);
 };
 
 const login = (user) => {
-
   return axios
-    .post(API_URL + "signin", {
-      withCredentials: true,
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
+    .post(
+      API_URL + "signin",
+      {
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      },
+      {
+        auth: {
+          username: user.email,
+          password: user.password,
+        },
       }
-    }, {
-      auth: {
-        username: user.email,
-        password: user.password
-      }
-    })
+    )
     .then((response) => {
       if (response.data.access_token) {
-        localStorage.setItem('token', response.data.access_token)
-        localStorage.setItem('userId', response.data.user.id)
+        localStorage.setItem("token", response.data.access_token);
+        localStorage.setItem("userId", response.data.user.id);
       }
       // return response.data;
-    }).catch(err => {
+    })
+    .catch((err) => {
       console.log(err);
     });
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("userId");
+  localStorage.removeItem("token");
 };
 
 const getCurrentUser = () => {
