@@ -27,7 +27,7 @@ export function Card(props) {
       <CardDiv onClick={togglePopup}>
         <ImageDiv>
           <ImageDim>
-            <Image src={'http://localhost:8081/public/images/' + activity.filename}/>
+            <Image src={'https://healthy-thinking.onrender.com//public/images/' + activity.filename}/>
           </ImageDim>
         </ImageDiv>
         <AddButtonDiv>

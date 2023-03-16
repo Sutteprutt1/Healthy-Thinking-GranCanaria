@@ -32,7 +32,7 @@ export function Popup(props) {
         <Title>{activity.name}</Title>
         <ImageDiv>
           <Image
-            src={"http://localhost:8081/public/images/" + activity.filename}
+            src={"https://healthy-thinking.onrender.com//public/images/" + activity.filename}
           />
         </ImageDiv>
         <Description>{activity.description}</Description>

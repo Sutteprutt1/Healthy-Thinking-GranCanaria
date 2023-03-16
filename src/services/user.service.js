@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth.header.js";
 
-const API_URL = "http://" + window.location.hostname + ":8081/api/users/";
+const API_URL = "https://healthy-thinking.onrender.com//api/users/";
 
 const getAll = () => {
   return axios.get(API_URL);
