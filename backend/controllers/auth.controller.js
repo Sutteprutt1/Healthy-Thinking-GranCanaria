@@ -6,7 +6,7 @@ const User = db.user;
 
 exports.signin = (req, res) => {
   const basicAuthData = req.headers.authorization.split("Basic ")[1];
-  const decodedData = atob(basicAuthData);
+  const decodedData = Buffer.from(basicAuthData, "base64");
 
   const email = decodedData.split(":")[0];
   const pwd = decodedData.split(":")[1];
