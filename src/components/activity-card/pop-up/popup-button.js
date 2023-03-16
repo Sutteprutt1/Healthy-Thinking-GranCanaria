@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "./styles.js";
 import SuscriptionService from "../../../services/suscription.service";
 
 export default function PopupButton(props) {
-  // Receive the info of activity from the page
+  const [suscriptions, setSuscriptions] = useState([]);
+  const [currentSuscriptions, setCurrentSuscriptions] = useState([]);
   const activity = props.activity;
-
-  const [addedToAgenda, setAddedToAgenda] = useState(false); // Initialize the state variable to false
-
-  // Receive the togglePopup function from the parent component
   const { togglePopup } = props;
+
+  const [addedToAgenda, setAddedToAgenda] = useState(false); // initialize to false
 
   var data = {
     start_time: new Date(),
@@ -19,14 +18,12 @@ export default function PopupButton(props) {
   };
 
   function addToAgenda() {
-    console.log(data);
     SuscriptionService.create(data)
-      .then((data) => {
-        //Do anything then data return.
+      .then(() => {
         console.log("Activity added to agenda!");
-        setAddedToAgenda(true); // Update the state variable to true
+        setAddedToAgenda(true); // set to true after adding to agenda
         setTimeout(() => {
-          togglePopup(); // Close the modal after a 2 second delay
+          togglePopup();
         }, 1500);
       })
       .catch((err) => {
@@ -35,9 +32,26 @@ export default function PopupButton(props) {
   }
 
   function removeFromAgenda() {
-    // Implement the logic to remove the activity from the agenda here
-    console.log("Activity removed from agenda!");
-    setAddedToAgenda(false); // Update the state variable to false
+    setSuscriptions(SuscriptionService.getAll()).then(() => {
+      setCurrentSuscriptions(
+        suscriptions.filter(
+          (suscription) =>
+            suscription.userId === data.userId &&
+            suscription.activityId === activity.id
+        )
+      ).then(() => {
+        currentSuscriptions.forEach((suscription) =>
+          SuscriptionService.deleteOne(suscription.id)
+            .then(() => {
+              console.log("Activity removed from agenda!");
+              setAddedToAgenda(false); // set to false after removing from agenda
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        );
+      });
+    });
   }
 
   return (
@@ -45,7 +59,7 @@ export default function PopupButton(props) {
       addedToAgenda={addedToAgenda}
       onClick={addedToAgenda ? removeFromAgenda : addToAgenda}
     >
-      {addedToAgenda ? "Added!" : "Add to agenda?"}
+      {addedToAgenda ? "Added!" : "Add to agenda"}
     </Button>
   );
 }
