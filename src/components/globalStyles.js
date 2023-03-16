@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import {createGlobalStyle} from "styled-components"
 
 // color palette
 export const colors = {
@@ -8,8 +8,8 @@ export const colors = {
   pink: "#FFB7C3",
   yellow: "#F9A620",
   blue: "#81B9CB",
-  black: "#000000"
-};
+  black: "#000000",
+}
 
 export const BackgroundGradient = createGlobalStyle`
   body {
@@ -17,10 +17,10 @@ export const BackgroundGradient = createGlobalStyle`
     height: 100vh;
   }
 
-`;
+`
 
 export const LoginBackground = createGlobalStyle`
   body {
     background: linear-gradient(to bottom, ${colors.white}, ${colors.lightGreen}, ${colors.pink});
     height: 100vh;
-  }`;
+  }`

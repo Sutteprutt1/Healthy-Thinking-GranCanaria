@@ -18,10 +18,10 @@ export const CardDiv = styled.div`
   background-color: ${colors.darkGreen};
   border-radius: 40px;
   color: ${colors.white};
-  z-index: 5;
   position: relative;
   display: flex;
   flex-direction: column;
+  z-index: 999;
 `;
 
 export const ExitButton = styled.button`
@@ -74,23 +74,20 @@ export const ImageDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   overflow: hidden;
-
-  /* margin: auto; */
 `;
 
 // This isn't being used anywhere?
 
-// export const ImageDim = styled.div`
-//   // height: 72px;
-//   // width: 210px;
-//   border-radius: 20px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   overflow: hidden;
-// `;
+export const ImageDim = styled.div`
+  // height: 72px;
+  // width: 210px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
 
 export const DarkFilter = styled.div`
   height: 100vh;
@@ -103,4 +100,6 @@ export const DarkFilter = styled.div`
   z-index: 1;
   transition-duration: 500ms;
   transition-property: background-color;
+  z-index: 998;
+  pointer-events: all;
 `;
