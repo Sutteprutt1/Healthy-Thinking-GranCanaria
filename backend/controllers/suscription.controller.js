@@ -132,7 +132,7 @@ exports.findActivitiesByUserId = (req, res) => {
     .then((subscriptions) => {
       // Getting all info about activities
       const activityPromises = subscriptions.map((subscription) => {
-        return Activity.findByPk(subscription);
+        return Activity.findByPk(subscription.activityId);
       });
       return Promise.all(activityPromises);
     })
