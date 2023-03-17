@@ -33,20 +33,20 @@ export default function PopupButton(props) {
 
   function removeFromAgenda() {
     SuscriptionService.getAll().then((data) => {
-      for (let x = 0; x < data.length; x++) {
-        console.log('subscription: ' + x + ' - ' + data[x].userId);
-        if (data[x].userId === localStorage.getItem('userId') && data[x].activityId === activity.id) {
-          SuscriptionService.deleteOne(data[x].id).then(() => {
+      data.map((info, index) => {
+        console.log('subscription: ' + info + ' - ' + info.userId);
+        if (info.userId === localStorage.getItem('userId') && info.activityId === activity.id) {
+          SuscriptionService.deleteOne(info.id).then(() => {
             console.log("Activity removed from agenda!");
             setAddedToAgenda(false); // set to false after removing from agenda
           }).catch((err) => {
             console.log(err);
           });
-          break; // exit the loop once the subscription is deleted
         } else {
           console.log('Something is wrong');
         }
-      }
+      })
+
     });
   }
 
