@@ -118,7 +118,7 @@ exports.update = (req, res) => {
   }
 
   User.findByPk(id).then(data => {
-    try{
+    try {
       filename = data.filename;
     } catch {
       console.log('User has not an image saved');
@@ -133,7 +133,10 @@ exports.update = (req, res) => {
       filename: req.file ? req.file.filename : filename
     }
 
-    user.password = bcrypt.hashSync(req.body.password);
+    if (user.password !== '') {
+      user.password = bcrypt.hashSync(req.body.password);
+    }
+
 
     User.update(user, {
       where: { id: id }
