@@ -75,7 +75,7 @@ export function UserProfile() {
         <Navbar></Navbar>
         <ProfileContainer>
           {hasImage ? (
-            <UserImg src={'https://healthy-thinking.onrender.com//public/images/' + user.filename} alt="profile-img" />
+            <UserImg src={'https://healthy-thinking.onrender.com/public/images/' + user.filename} alt="profile-img" />
           ) : (
             <UserImg src={account} alt="profile-img" />
           )}

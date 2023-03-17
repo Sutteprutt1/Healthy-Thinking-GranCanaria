@@ -41,6 +41,7 @@ export default function PopupButton(props) {
       // );
 
       for (let x = 0; x < data.length; x++) {
+        console.log('suscription : ' + x + ' - ' + data[x].userId);
         if (data[x].userId === localStorage.getItem('userId') &&
           data[x].activityId === activity.id) {
           setCurrentSuscriptions(data).then(() => {
