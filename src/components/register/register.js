@@ -46,21 +46,21 @@ export function UserRegistration() {
     <>
       <RegisterSection>
         <RegisterWrapper>
-          <Input
-            placeholder="Username"
-            type="text"
-            name="username"
-            onChange={handleInputChange}
-            required
-          />
-          <Input
-            placeholder="Password"
-            type="password"
-            name="password"
-            onChange={handleInputChange}
-            required
-          />
           <Form onSubmit={onSubmit}>
+            <Input
+              placeholder="Username"
+              type="text"
+              name="username"
+              onChange={handleInputChange}
+              required
+            />
+            <Input
+              placeholder="Password"
+              type="password"
+              name="password"
+              onChange={handleInputChange}
+              required
+            />
             <Input
               placeholder="Email"
               type="text"
