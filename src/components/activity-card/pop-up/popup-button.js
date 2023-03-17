@@ -35,7 +35,8 @@ export default function PopupButton(props) {
     SuscriptionService.getAll().then((response) => {
       try {
         response.data.map((info, index) => {
-          console.log('subscription: ' + info + ' - ' + info.userId);
+          console.log(index);
+          console.log(info);
           if (info.userId === localStorage.getItem('userId') && info.activityId === activity.id) {
             SuscriptionService.deleteOne(info.id).then(() => {
               console.log("Activity removed from agenda!");
