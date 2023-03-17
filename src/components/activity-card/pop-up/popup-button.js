@@ -33,22 +33,26 @@ export default function PopupButton(props) {
 
   function removeFromAgenda() {
     SuscriptionService.getAll().then((data) => {
-      const filteredSuscriptions = data.filter(
-        (suscription) =>
-          suscription.userId === data.userId &&
-          suscription.activityId === activity.id
-      );
-      setCurrentSuscriptions(filteredSuscriptions);
-      filteredSuscriptions.forEach((suscription) => {
-        SuscriptionService.deleteOne(suscription.id)
-          .then(() => {
-            console.log("Activity removed from agenda!");
-            setAddedToAgenda(false); // set to false after removing from agenda
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      });
+      if (Array.isArray(data)) {
+        const filteredSuscriptions = data.filter(
+          (suscription) =>
+            suscription.userId === localStorage.getItem('userId') &&
+            suscription.activityId === activity.id
+        );
+        setCurrentSuscriptions(filteredSuscriptions);
+        filteredSuscriptions.forEach((suscription) => {
+          SuscriptionService.deleteOne(suscription.id)
+            .then(() => {
+              console.log("Activity removed from agenda!");
+              setAddedToAgenda(false); // set to false after removing from agenda
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      } else {
+        console.log("Error: 'data' is not an array");
+      }
     });
   }
 
