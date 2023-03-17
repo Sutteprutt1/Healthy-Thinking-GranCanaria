@@ -3,7 +3,7 @@ import { Button } from "./styles.js";
 import SuscriptionService from "../../../services/suscription.service";
 
 export default function PopupButton(props) {
-  const [suscriptions, setSuscriptions] = useState([]);
+  // const [suscriptions, setSuscriptions] = useState([]);
   const [currentSuscriptions, setCurrentSuscriptions] = useState([]);
   const activity = props.activity;
   const { togglePopup } = props;
@@ -32,24 +32,22 @@ export default function PopupButton(props) {
   }
 
   function removeFromAgenda() {
-    setSuscriptions(SuscriptionService.getAll()).then(() => {
-      setCurrentSuscriptions(
-        suscriptions.filter(
-          (suscription) =>
-            suscription.userId === data.userId &&
-            suscription.activityId === activity.id
-        )
-      ).then(() => {
-        currentSuscriptions.forEach((suscription) =>
-          SuscriptionService.deleteOne(suscription.id)
-            .then(() => {
-              console.log("Activity removed from agenda!");
-              setAddedToAgenda(false); // set to false after removing from agenda
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-        );
+    SuscriptionService.getAll().then((data) => {
+      const filteredSuscriptions = data.filter(
+        (suscription) =>
+          suscription.userId === data.userId &&
+          suscription.activityId === activity.id
+      );
+      setCurrentSuscriptions(filteredSuscriptions);
+      filteredSuscriptions.forEach((suscription) => {
+        SuscriptionService.deleteOne(suscription.id)
+          .then(() => {
+            console.log("Activity removed from agenda!");
+            setAddedToAgenda(false); // set to false after removing from agenda
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
     });
   }
