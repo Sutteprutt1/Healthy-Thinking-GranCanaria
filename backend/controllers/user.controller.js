@@ -133,9 +133,9 @@ exports.update = (req, res) => {
       filename: req.file ? req.file.filename : filename
     }
 
-    if (!bcrypt.compareSync(user.password, data.password)) {
-      user.password = bcrypt.hashSync(req.body.password);
-    }
+    // if (!bcrypt.compareSync(user.password, data.password)) {
+    //   user.password = bcrypt.hashSync(req.body.password);
+    // }
 
 
     User.update(user, {
