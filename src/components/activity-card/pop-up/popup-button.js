@@ -40,22 +40,22 @@ export default function PopupButton(props) {
       //     suscription.activityId === activity.id
       // );
 
-      console.log(data.userId + ' = ' + localStorage.getItem('userId') + ' / ' + data.activityId + ' = ' + activity.id);
-
-      if (data.userId === localStorage.getItem('userId') &&
-        data.activityId === activity.id) {
-        setCurrentSuscriptions(data).then(() => {
-          SuscriptionService.deleteOne(data.id)
-            .then(() => {
-              console.log("Activity removed from agenda!");
-              setAddedToAgenda(false); // set to false after removing from agenda
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        });
-      } else {
-        console.log('Something is wrong');
+      for (let x = 0; x < data.length; x++) {
+        if (data[x].userId === localStorage.getItem('userId') &&
+          data[x].activityId === activity.id) {
+          setCurrentSuscriptions(data).then(() => {
+            SuscriptionService.deleteOne(data.id)
+              .then(() => {
+                console.log("Activity removed from agenda!");
+                setAddedToAgenda(false); // set to false after removing from agenda
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          });
+        } else {
+          console.log('Something is wrong');
+        }
       }
     });
   }
