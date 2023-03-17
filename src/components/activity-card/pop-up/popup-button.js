@@ -32,9 +32,9 @@ export default function PopupButton(props) {
   }
 
   function removeFromAgenda() {
-    SuscriptionService.getAll().then((data) => {
+    SuscriptionService.getAll().then((response) => {
       try {
-        data.map((info, index) => {
+        response.data.map((info, index) => {
           console.log('subscription: ' + info + ' - ' + info.userId);
           if (info.userId === localStorage.getItem('userId') && info.activityId === activity.id) {
             SuscriptionService.deleteOne(info.id).then(() => {
@@ -48,8 +48,7 @@ export default function PopupButton(props) {
           }
         })
       } catch {
-        console.log(data);
-        if (data.userId === localStorage.getItem('userId') && data.activityId === activity.id) {
+        if (response.data.userId === localStorage.getItem('userId') && response.data.activityId === activity.id) {
           SuscriptionService.deleteOne(data.id).then(() => {
             console.log("Activity removed from agenda!");
             setAddedToAgenda(false); // set to false after removing from agenda
