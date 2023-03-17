@@ -48,17 +48,17 @@ export default function PopupButton(props) {
           }
         })
       } catch {
-        console.log('subscription: ' + data + ' - ' + data.userId);
-          if (data.userId === localStorage.getItem('userId') && data.activityId === activity.id) {
-            SuscriptionService.deleteOne(data.id).then(() => {
-              console.log("Activity removed from agenda!");
-              setAddedToAgenda(false); // set to false after removing from agenda
-            }).catch((err) => {
-              console.log(err);
-            });
-          } else {
-            console.log('Something is wrong');
-          }
+        console.log(data);
+        if (data.userId === localStorage.getItem('userId') && data.activityId === activity.id) {
+          SuscriptionService.deleteOne(data.id).then(() => {
+            console.log("Activity removed from agenda!");
+            setAddedToAgenda(false); // set to false after removing from agenda
+          }).catch((err) => {
+            console.log(err);
+          });
+        } else {
+          console.log('Something is wrong');
+        }
       }
     });
   }
