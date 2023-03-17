@@ -47,9 +47,9 @@ export const NavButton = styled.button`
 `;
 
 export const DarkFilter = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   background-color: ${colors.black};
