@@ -27,7 +27,6 @@ export function UserProfile() {
   useEffect(() => {
     retrieveEvent();
     userData();
-    console.log(hasImage);
   }, [])
 
   const retrieveEvent = () => {
@@ -43,7 +42,6 @@ export function UserProfile() {
   const userData = () => {
     UserService.getOne(userId)
       .then(response => {
-        console.log(response.data)
         setUser(response.data)
         response.data.filename ? setHasImage(true) : setHasImage(false)
       })
