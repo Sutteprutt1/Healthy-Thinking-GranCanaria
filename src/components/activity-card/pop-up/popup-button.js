@@ -33,22 +33,22 @@ export default function PopupButton(props) {
 
   function removeFromAgenda() {
     SuscriptionService.getAll().then((data) => {
-      try {
-        data.map((info, index) => {
-          console.log('subscription: ' + info + ' - ' + info.userId);
-          if (info.userId === localStorage.getItem('userId') && info.activityId === activity.id) {
-            SuscriptionService.deleteOne(info.id).then(() => {
-              console.log("Activity removed from agenda!");
-              setAddedToAgenda(false); // set to false after removing from agenda
-            }).catch((err) => {
-              console.log(err);
-            });
-          } else {
-            console.log('Something is wrong');
-          }
-        })
-      } catch {
-        console.log('subscription: ' + data + ' - ' + data.userId);
+      data.map((info, index) => {
+        console.log('subscription: ' + info + ' - ' + info.userId);
+        if (info.userId === localStorage.getItem('userId') && info.activityId === activity.id) {
+          SuscriptionService.deleteOne(info.id).then(() => {
+            console.log("Activity removed from agenda!");
+            setAddedToAgenda(false); // set to false after removing from agenda
+          }).catch((err) => {
+            console.log(err);
+          });
+        } else {
+          console.log('Something is wrong');
+        }
+      })
+        .catch(err => {
+          console.log(err);
+          console.log('subscription: ' + data + ' - ' + data.userId);
           if (data.userId === localStorage.getItem('userId') && data.activityId === activity.id) {
             SuscriptionService.deleteOne(data.id).then(() => {
               console.log("Activity removed from agenda!");
@@ -59,7 +59,7 @@ export default function PopupButton(props) {
           } else {
             console.log('Something is wrong');
           }
-      }
+        })
     });
   }
 
